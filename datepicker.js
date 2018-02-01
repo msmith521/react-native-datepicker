@@ -325,6 +325,10 @@ class DatePicker extends Component {
     return null;
   }
 
+  /* 
+  Component was originanally inaccessible on IOS due to it being nested in two touchable components. The touchable components are natively accessible, which prevents the  wheels inside of the date picker from being individually accessible. Removing the two touchable components exposes the wheels to the screen reader
+  */
+
   render() {
     const {
       mode,
@@ -433,7 +437,6 @@ class DatePicker extends Component {
                     >
                       <View pointerEvents={this.state.allowPointerEvents ? 'auto' : 'none'}>
                         <DatePickerIOS
-
                           date={this.state.date}
                           mode={mode}
                           minimumDate={minDate && this.getDate(minDate)}
